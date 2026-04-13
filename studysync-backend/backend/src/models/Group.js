@@ -17,17 +17,17 @@ const groupSchema = new mongoose.Schema({
   members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 }, { timestamps: true });
 
-// Auto-add leader as first member
+// Auto-add leader as first member 
 groupSchema.pre('save', function (next) {
   if (this.isNew) {
     const leaderId = this.leader.toString();
     const alreadyMember = this.members.some(m => m.toString() === leaderId);
     if (!alreadyMember) this.members.push(this.leader);
   }
-  next();
+  next(); 
 });
 
-// Virtual member count
+// Virtual member count 
 groupSchema.virtual('memberCount').get(function () {
   return this.members.length;
 });
