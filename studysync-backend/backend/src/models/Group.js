@@ -27,7 +27,7 @@ groupSchema.pre('save', function (next) {
   next(); 
 });
 
-// Virtual member count 
+// Virtual member count  
 groupSchema.virtual('memberCount').get(function () {
   return this.members.length;
 });
