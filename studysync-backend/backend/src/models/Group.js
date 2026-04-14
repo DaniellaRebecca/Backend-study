@@ -17,7 +17,7 @@ const groupSchema = new mongoose.Schema({
   members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 }, { timestamps: true });
 
-// Auto-add leader as first  
+// Ensure leader is always included as a member on creation 
 groupSchema.pre('save', function (next) {
   if (this.isNew) {
     const leaderId = this.leader.toString();
